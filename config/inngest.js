@@ -2,10 +2,20 @@ import { Inngest } from "inngest";
 import connectDB from "./db";
 import User from "@/models/user";
 
+
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quickcart-next" });
 
 //inngest functioin to save user data to a database
+
+export const runtime = "edge";
+
+export const { GET, POST, PUT } = serve({
+  client: inngest,
+  functions: [...fns],
+  streaming: "allow",
+});
+
 
 export const syncUserCreation = inngest.createFunction(
   {
